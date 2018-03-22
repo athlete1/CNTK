@@ -228,7 +228,7 @@ public:
             }
 
             // TODO: We unpack the same output gradients each time this method is called for a different input.
-            // We should be able to cache the unpacked values during backpropagation of gradients to the first
+            // We should be able to cache the unpacked values during back-propagation of gradients to the first
             // input, and reuse them for subsequence inputs.
             ::CNTK::ValuePtr gradientValue;
             if (output.NeedsGradient())
@@ -323,10 +323,7 @@ public:
 
         auto outputs = m_externalFunction->Outputs();
         bool layoutNotInitialized = (m_pMBLayout == nullptr);
-        
-        InferMBLayoutFromInputsForStandardCase(isFinalValidationPass);
 
-        /*
         if (layoutNotInitialized)
         {
             bool matchingDynamicAxesFound = false;
@@ -350,7 +347,7 @@ public:
                         continue;
                     }
 
-                    auto inputDynamicAxes = arguments[argIndex++].DynamicAxes();                   
+                    auto inputDynamicAxes = arguments[argIndex++].DynamicAxes();
 
                     // The number of output dynamic axes should be equal or less
                     // than the input dynamic axes.
@@ -391,7 +388,7 @@ public:
                 InferMBLayoutFromInputsForStandardCase(isFinalValidationPass);
             }
         }
-        */
+
         for (size_t i = 0; i < outputs.size(); ++i)
         {
             auto output = outputs[i];
